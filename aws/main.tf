@@ -161,8 +161,8 @@ resource "aws_instance" "vault-server" {
   }
 
   # Put a copy of the ssh key onto the local workstation
-  provisioner "local-exec" {
-    interpreter = ["PowerShell", "-Command"]
+  #provisioner "local-exec" {
+ /*    interpreter = ["PowerShell", "-Command"]
     command = <<-EOF
               New-Item -ItemType Directory -Force -Path $${env:HOMEPATH}\.ssh
               Write-Output @"
@@ -171,7 +171,7 @@ resource "aws_instance" "vault-server" {
               ((Get-Content $${env:HOMEPATH}\.ssh\id_rsa) -join "`n") + "`n" | Set-Content -NoNewline $${env:HOMEPATH}\.ssh\id_rsa
               EOF
   }
-
+ */
   provisioner "remote-exec" {
     inline = [
     "chmod -R +x /home/ubuntu/",
